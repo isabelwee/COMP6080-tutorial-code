@@ -1,0 +1,36 @@
+body {
+    font-family: sans-serif;
+}
+
+button {
+    padding: 10px;
+    border: 2px solid rgb(7, 155, 155);
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.login-button {
+    background-color: rgb(7, 155, 155);
+    color: white;
+}
+
+.signup-button {
+    background-color: white;
+    color: rgb(7, 155, 155);
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(202, 202, 202);
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.outer-container {
+    display: flex;
+}
+
+.inner-container {
+    margin-right: 50px;
+}

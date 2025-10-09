@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .hide {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <a href="" id="tabHome">Home</a> |
+    <a href="" id="tabAbout">About</a> |
+    <a href="" id="tabNews">News</a> |
+    <a href="" id="tabArticles">Articles</a> 
+  </header>
+  <form action="" class="hide" id="form">
+    <div>Email: <input type="text"></div>
+    <div>Name: <input type="text"></div>
+    <button id="close">Close</button>
+    <button>Submit</button>
+  </form>
+  <div id="page">
+    <div id="pageHome" class="page">This is the Home page</div>
+    <div id="pageAbout" class="page hide">This is the About page</div>
+    <div id="pageNews" class="page hide">This is the News page</div>
+    <div id="pageArticles" class="page hide">This is the Articles page</div>
+  </div>
+  <footer id="footer">
+    <a href="" id="contact-link">Contact us</a>
+  </footer>
+  <script type="text/javascript">
+
+    const tabs = ['Home', 'About', 'News', 'Articles'];
+			const setTab = name => {
+				document.getElementById(`tab${name}`).addEventListener('click', e => {
+					tabs.map(tab => document.getElementById(`page${tab}`).style.display = 'none');
+					document.getElementById(`page${name}`).style.display = 'block';
+				});
+			}
+			tabs.map(setTab);
+
+      
+    document.getElementById("contact-link").addEventListener("click", () => {
+      const form = document.getElementById("form");
+      form.style.display = "block";
+      document.getElementById("header").style.display = "none"
+      document.getElementById("page").style.display = "none"
+      document.getElementById("footer").style.display = "none"
+    })
+
+    document.getElementById("close").addEventListener("click", () => {
+      const form = document.getElementById("form");
+      form.style.display = "none";
+      document.getElementById("header").style.display = "block"
+      document.getElementById("page").style.display = "block"
+      document.getElementById("footer").style.display = "block"
+    })
+
+
+    // const tabs = ["Home", "About", "News", "Articles"];
+
+    // const setTabs = (selectedTab) => {
+    //   document.getElementById(`tab${selectedTab}`).addEventListener("click", () => {
+    //     tabs.map((tab) => {
+    //       document.getElementById(`page${tab}`).style.display = "none";
+    //     });
+    //     document.getElementById(`page${selectedTab}`).style.display = "block";
+    //   });
+    // }
+
+    // tabs.map((tab) => setTabs(tab));
+
+  </script>
+</body>
+</html>

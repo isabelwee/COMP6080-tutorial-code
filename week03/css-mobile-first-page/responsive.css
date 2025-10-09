@@ -1,0 +1,38 @@
+/* .row {
+    display: flex;
+}
+
+.row1 > img {
+    max-width: 25%;
+}
+
+.row2 > img {
+    max-width: 33.33%;
+}
+.row3 > img {
+    max-width: 50%;
+} */
+
+.row {
+    display: grid;
+}
+.row1 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.row2 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.row3 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+img {
+    max-width: 100%;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url('assets/roboto.');
+}

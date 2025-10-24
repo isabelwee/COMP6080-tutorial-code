@@ -1,16 +1,72 @@
 // TODO
-function question1() {
-  getCompanyRepos("microsoft").then((company) =>
-    company.forEach((repo) => console.log(repo))
-  );
+const question1 = () => {
+  // getCompanyRepos("microsoft").then((company) =>
+  //   company.forEach((repo) => console.log(repo))
+  // );
 
-  getCompanyRepos("google").then((company) =>
-    company.forEach((repo) => console.log(repo))
-  );
+  // getCompanyRepos("google").then((company) =>
+  //   company.forEach((repo) => console.log(repo))
+  // );
 
-  getCompanyRepos("canva").then((company) =>
-    company.forEach((repo) => console.log(repo))
-  );
+  // getCompanyRepos("canva").then((company) =>
+  //   company.forEach((repo) => console.log(repo))
+  // );
+
+  const microsoftRepos = getCompanyRepos("microsoft");
+  const googleRepos = getCompanyRepos("google");
+  const canvaRepos = getCompanyRepos("canva");
+  Promise.all([microsoftRepos, googleRepos, canvaRepos])
+    .then((companies) => {
+      companies.forEach((company) => {
+        company.forEach((repo) => console.log(repo))
+      })
+    })
+}
+
+const question2 = async () => {
+  const microsoftRepos = getCompanyRepos("microsoft");
+  const googleRepos = getCompanyRepos("google");
+  const canvaRepos = getCompanyRepos("canva");
+
+  const companies = await Promise.all([microsoftRepos, googleRepos, canvaRepos])
+  companies.forEach((company) => {
+    company.forEach((repo) => console.log(repo));
+  })
+}
+
+const question3 = () => {
+  const microsoftRepos = getCompanyRepos("microsoft");
+  const fakeCompanyRepos = getCompanyRepos("some_fake_company");
+
+  Promise.all([microsoftRepos, fakeCompanyRepos])
+    .then((companies) => {
+      companies.forEach((company) => {
+        company.forEach((repo) => console.log(repo))
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+}
+
+
+const question4 = () => {
+  const microsoftRepos = getCompanyRepos("microsoft");
+  const googleRepos = getCompanyRepos("google");
+  const canvaRepos = getCompanyRepos("canva");
+  const fakeCompanyRepos = getCompanyRepos("some_fake_company");
+
+  Promise.allSettled([microsoftRepos, googleRepos, canvaRepos, fakeCompanyRepos])
+    .then((results) => {
+      results.forEach((result) => {
+        if (result.status === "rejected") {
+          console.log(result.reason);
+        } else if (result.status === "fulfilled") {
+          result.value.forEach((repo) => console.log(repo))
+        }
+      })
+    })
 }
 
 /**
@@ -41,4 +97,7 @@ async function getCompanyRepos(companyName) {
   return repoArray;
 }
 
-question1();
+// question1();
+// question2();
+// question3();
+question4();

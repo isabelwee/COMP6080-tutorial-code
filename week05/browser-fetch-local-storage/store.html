@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    const container = document.createElement("div");
+    container.style.display = "flex";
+    container.style.flexDirection = "column";
+    container.innerText = "Loading, please wait";
+    document.body.appendChild(container);
+
+    fetch('https://cgi.cse.unsw.edu.au/~cs6080/raw/data/package.json')
+      .then(res => res.json())
+      .then(data => {
+        localStorage.setItem("COMP6080", JSON.stringify(data))
+        container.innerText = "";
+        render(data)
+      }) 
+      .catch(() => {
+        const data = localStorage.getItem("COMP6080");
+        render(JSON.parse(data));
+
+        const text = document.createTextNode("This data is not live.")
+        container.appendChild(text);
+      })
+
+    const render = (data) => {
+      createElement("name", data.name);
+      createElement("reindeers", data.reindeers);
+      createElement("primary", data.primary);
+    }
+
+    const createElement = (key, value) => {
+      const box = document.createElement("div");
+      box.style.display = "flex";
+
+      const keyDiv = document.createElement("div");
+      keyDiv.innerText = key;
+      keyDiv.style.width = "70px";
+
+      const valueDiv = document.createElement("div");
+      valueDiv.innerText = value;
+
+      box.appendChild(keyDiv);
+      box.appendChild(valueDiv);
+      container.appendChild(box);
+    }
+  </script>
+</body>
+</html>

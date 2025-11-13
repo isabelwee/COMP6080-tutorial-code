@@ -12,25 +12,30 @@ function App() {
 
   return (
     <div>
-      <div className="header">
-        <div id="nav-bar">
-          <div className="nav-item">Home</div>
-          <div className="nav-item">About</div>
-          <div className="nav-item">Pricing</div>
-          <div className="nav-item">Partners</div>
-          <div className="nav-item">Contact</div>
-        </div>
-      </div>
-      <div className="main">
-        First name: <input type="text" name="first-name" value={name} onChange={e => setName(e.target.value)} /><br />
-        {allNames.map((n, idx) => (
-          <div style={{ width: '50px', height: '50px', display: 'inline-block'}}>{n}</div>
-        ))}
-        <div id="form-submit" onClick={submitInfo}>Submit</div>
-      </div>
-      <div className="footer">
+      <header className="header">
+        <nav id="nav-bar">
+          <ul>
+            <li className="nav-item">Home</li>
+            <li className="nav-item">About</li>
+            <li className="nav-item">Pricing</li>
+            <li className="nav-item">Partners</li>
+            <li className="nav-item">Contact</li>
+          </ul>
+        </nav>
+      </header>
+      <main className="main">
+        <label htmlFor="name">First name: </label>
+        <input id="name" type="text" name="first-name" value={name} onChange={e => setName(e.target.value)} /><br />
+        <ul>
+          {allNames.map((n, idx) => (
+            <li key={idx}>{n}</li>
+          ))}
+        </ul>
+        <button id="form-submit" onClick={submitInfo}>Submit</button>
+      </main>
+      <footer className="footer">
         &copy; Giant Apple 2020
-      </div>
+      </footer>
     </div>
   );
 }
